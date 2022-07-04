@@ -6,5 +6,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular-app';
+  title = 'Lista de tarefas - Angular';
+
+  // State
+  todos: string[] = [];
+  todoText: string = '';
+
+  // Lifecycle
+  ngOnInit(): void {
+   this.todos = JSON.parse(localStorage.getItem("todos") as string) || [];
+  };
+
+  // Events
+  addTodo() {
+    this.todos.push(this.todoText);
+    localStorage.setItem('todos', JSON.stringify(this.todos));
+  }
 }
